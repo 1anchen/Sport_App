@@ -1,4 +1,5 @@
-require('../db/sqlruner')
+require_relative('../db/sqlrunner')
+
 
 class Game
 
@@ -20,7 +21,13 @@ class Game
           ($1,$2,$3,$4)
           RETURNING id"
     values = [@home_team_id,@away_team_id,@home_team_score,@away_team_score]
-    result = SqlRunner(sql,values)
+    result = SqlRunner.run(sql,values)
     @id = result[0]['id']
   end
+
+  def self.delete_all
+    sql = "DELETE FROM games"
+    SqlRunner.run(sql)
+  end
+
 end
