@@ -25,9 +25,36 @@ class Game
     @id = result[0]['id']
   end
 
+
+
+  def self.delete(id)
+    sql = "DELETE FROM games WHERE id = $1"
+    values = [id]
+    SqlRunner.run(sql,values)
+  end
+
   def self.delete_all
     sql = "DELETE FROM games"
     SqlRunner.run(sql)
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM games WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values)
+    game = self.map_item(result)
+    return game
+  end
+
+  def self.find_all
+    sql = "SELECT * FROM games"
+    result = SqlRunner.run(sql)
+    game = self.map_item(result)
+    return game
+  end
+
+  def self.map_item(game_hashes)
+    result = game_hashes.map{|game_hash| self.new(game_hash)}
+    return result
+  end
 end
