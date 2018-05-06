@@ -21,6 +21,16 @@ class Team
     @id = result[0]["id"].to_i
   end
 
+  def update()
+    sql = "UPDATE teams
+           SET name
+           = $1
+           WHERE id = $2"
+    values = [@name,@id]
+    SqlRunner.run(sql,values)
+  end
+
+
   def self.delete(id)
     sql = "DELETE FROM teams WHERE id = $1"
     values = [id]
