@@ -21,3 +21,8 @@ post '/game' do
   game.save()
   redirect to '/game'
 end
+
+post '/game/:id/delete' do
+  Game.delete(params[:id])
+  redirect to '/game'
+end
