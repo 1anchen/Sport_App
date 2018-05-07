@@ -14,6 +14,29 @@ class Game
     @away_team_score = options["away_team_score"].to_i
   end
 
+  def away_team_name()
+    sql = "SELECT teams.name
+           FROM games
+           INNER JOIN teams
+           ON away_team_id = teams.id
+           WHERE games.id =$1"
+    values = [@id]
+    result = SqlRunner.run(sql,values)
+    team_name = result[0]['name']
+  end
+
+  def home_team_name()
+    sql = "SELECT teams.name
+           FROM games
+           INNER JOIN teams
+           ON home_team_id = teams.id
+           WHERE games.id =$1"
+    values = [@id]
+    result = SqlRunner.run(sql,values)
+    team_name = result[0]['name']
+  end
+
+
   def save()
     sql = "INSERT INTO games
           (home_team_id,away_team_id,home_team_score,away_team_score)
@@ -24,6 +47,8 @@ class Game
     result = SqlRunner.run(sql,values)
     @id = result[0]['id']
   end
+
+
 
   def update()
     sql = "UPDATE games
