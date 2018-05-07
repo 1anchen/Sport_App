@@ -11,8 +11,7 @@ class Team
 
   end
 
-  def wins()
-
+  def loses()
     sql = "SELECT games.* FROM games
            INNER JOIN teams ON games.home_team_id = teams.id
            OR games.away_team_id = teams.id
@@ -20,38 +19,20 @@ class Team
      values = [@id]
      game_hashes = SqlRunner.run(sql, values)
      results = Game.map_item(game_hashes)
-
-
-     wins = 0
+     loses = 0
      for result in results
-
        if result.home_team_id == @id &&
-          result.home_team_score > result.away_team_score
-
-          wins +=1
-
+          result.home_team_score < result.away_team_score
+         loses +=1
        elsif result.away_team_id == @id &&
-             result.away_team_score > result.home_team_score
-
-          wins +=1
-
+             result.away_team_score < result.home_team_score
+         loses +=1
        else
-
-          wins +=0
-
+         loses +=0
        end
-
-     end
-     return wins
+    end
+    return loses
   end
-  #
-  # def losses()
-  #
-  # end
-  #
-  # def total_games()
-  #   return wins().count() + losses().count()
-  # end
 
 
   def save()
@@ -74,6 +55,28 @@ class Team
     SqlRunner.run(sql,values)
   end
 
+  def wins()
+    sql = "SELECT games.* FROM games
+           INNER JOIN teams ON games.home_team_id = teams.id
+           OR games.away_team_id = teams.id
+           WHERE teams.id = $1"
+     values = [@id]
+     game_hashes = SqlRunner.run(sql, values)
+     results = Game.map_item(game_hashes)
+     wins = 0
+     for result in results
+       if result.home_team_id == @id &&
+          result.home_team_score > result.away_team_score
+         wins +=1
+       elsif result.away_team_id == @id &&
+             result.away_team_score > result.home_team_score
+          wins +=1
+       else
+          wins +=0
+       end
+     end
+     return wins
+  end
 
   def self.delete(id)
     sql = "DELETE FROM teams WHERE id = $1"
