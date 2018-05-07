@@ -8,8 +8,8 @@ class Game
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
-    @home_team_id = options["home_team_id"]
-    @away_team_id = options["away_team_id"]
+    @home_team_id = options["home_team_id"].to_i
+    @away_team_id = options["away_team_id"].to_i
     @home_team_score = options["home_team_score"].to_i
     @away_team_score = options["away_team_score"].to_i
   end
@@ -36,6 +36,13 @@ class Game
     team_name = result[0]['name']
   end
 
+  def extra_time()
+    score1 = rand(1..10)
+    if @home_team_score == @away_team_score
+       @home_team_score += (score1+2)
+       @away_team_score += score1
+    end
+  end
 
   def save()
     sql = "INSERT INTO games
@@ -84,6 +91,10 @@ class Game
     result = SqlRunner.run(sql)
     game = self.map_item(result)
     return game
+  end
+
+  def self.league_table
+
   end
 
   def self.map_item(game_hashes)

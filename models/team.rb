@@ -2,13 +2,57 @@ require_relative('../db/sqlrunner')
 
 class Team
 
-  attr_reader :id
+  attr_reader :id, :total_game, :win, :lose, :pct
   attr_accessor :name
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
     @name = options["name"]
+
   end
+
+  def wins()
+
+    sql = "SELECT games.* FROM games
+           INNER JOIN teams ON games.home_team_id = teams.id
+           OR games.away_team_id = teams.id
+           WHERE teams.id = $1"
+     values = [@id]
+     game_hashes = SqlRunner.run(sql, values)
+     results = Game.map_item(game_hashes)
+
+
+     wins = 0
+     for result in results
+
+       if result.home_team_id == @id &&
+          result.home_team_score > result.away_team_score
+
+          wins +=1
+
+       elsif result.away_team_id == @id &&
+             result.away_team_score > result.home_team_score
+
+          wins +=1
+
+       else
+
+          wins +=0
+
+       end
+
+     end
+     return wins
+  end
+  #
+  # def losses()
+  #
+  # end
+  #
+  # def total_games()
+  #   return wins().count() + losses().count()
+  # end
+
 
   def save()
     sql = "INSERT INTO teams
