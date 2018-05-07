@@ -9,7 +9,7 @@ class Team
     @id = options["id"].to_i if options["id"]
     @name = options["name"]
   end
-  
+
   def save()
     sql = "INSERT INTO teams
            (name)
@@ -54,7 +54,7 @@ class Team
     sql = "SELECT * FROM teams "
     result = SqlRunner.run(sql)
     team = self.map_item(result)
-    return team
+    return team.uniq!
   end
 
   def self.map_item(team_hashes)

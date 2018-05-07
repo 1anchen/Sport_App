@@ -5,6 +5,11 @@
   <li>
     <p> My Team :<%=team.name %>
     </p>
+    <p>
+      <form action='/team/<%=team.id  %>/delete' method="POST">
+        <input class="" type="submit" value="Delete" />
+      </form>
+    </p>
   </li>
   <%end %>
 </ul>
