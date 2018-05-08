@@ -1,0 +1,16 @@
+<h1>My League</h1>
+
+
+
+<label >
+   Select a team
+    <select class="" name="my-team">
+      <%for team in @teams  %>
+        <option value="<%= team.id%>"><%=team.name %></option>
+      <%end  %>
+
+      <form action='/my_teams/show' method="POST">
+      <input class="" type="submit" value="Enter" />
+      </form>
+    </select>
+</label>

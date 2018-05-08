@@ -2,7 +2,7 @@ require_relative('../db/sqlrunner')
 
 class Team
 
-  attr_reader :id, :total_game, :win, :lose, :pct
+  attr_reader :id
   attr_accessor :name
 
   def initialize(options)
@@ -12,26 +12,23 @@ class Team
   end
 
   def loses()
-    sql = "SELECT games.* FROM games
-           INNER JOIN teams ON games.home_team_id = teams.id
-           OR games.away_team_id = teams.id
-           WHERE teams.id = $1"
+    sql = "SELECT * FROM games
+           WHERE
+           (home_team_id = $1 AND home_team_score < away_team_score)
+           OR
+           (away_team_id = $1 AND away_team_score < home_team_score)"
      values = [@id]
      game_hashes = SqlRunner.run(sql, values)
-     results = Game.map_item(game_hashes)
-     loses = 0
-     for result in results
-       if result.home_team_id == @id &&
-          result.home_team_score < result.away_team_score
-         loses +=1
-       elsif result.away_team_id == @id &&
-             result.away_team_score < result.home_team_score
-         loses +=1
-       else
-         loses +=0
-       end
-    end
-    return loses
+     results = Game.map_items(game_hashes)
+     return results
+  end
+
+  def number_of_loses()
+    loses().count()
+  end
+
+  def number_of_wins()
+    wins().count()
   end
 
 
@@ -46,6 +43,11 @@ class Team
     @id = result[0]["id"].to_i
   end
 
+  # def total_game()
+  #  Team.find(@id)
+  #   # return team.wins + team.loses
+  # end
+
   def update()
     sql = "UPDATE teams
            SET name
@@ -56,28 +58,21 @@ class Team
   end
 
   def wins()
-    sql = "SELECT games.* FROM games
-           INNER JOIN teams ON games.home_team_id = teams.id
-           OR games.away_team_id = teams.id
-           WHERE teams.id = $1"
+    sql = "SELECT * FROM games
+           WHERE
+           (home_team_id = $1 AND home_team_score > away_team_score)
+           OR
+           (away_team_id = $1 AND away_team_score > home_team_score)"
      values = [@id]
      game_hashes = SqlRunner.run(sql, values)
-     results = Game.map_item(game_hashes)
-     wins = 0
-     for result in results
-       if result.home_team_id == @id &&
-          result.home_team_score > result.away_team_score
-         wins +=1
-       elsif result.away_team_id == @id &&
-             result.away_team_score > result.home_team_score
-          wins +=1
-       else
-          wins +=0
-       end
-     end
-     return wins
+     results = Game.map_items(game_hashes)
   end
 
+  def win_persentage
+    persentage = number_of_wins().to_f / (number_of_wins().to_f + number_of_loses.to_f)
+    persentage.round(3)
+
+  end
   def self.delete(id)
     sql = "DELETE FROM teams WHERE id = $1"
     values = [id]
@@ -97,11 +92,11 @@ class Team
     return team
   end
 
-  def self.find_all
+  def self.all()
     sql = "SELECT * FROM teams "
     result = SqlRunner.run(sql)
     team = self.map_item(result)
-    return team.uniq!
+    return team
   end
 
   def self.map_item(team_hashes)

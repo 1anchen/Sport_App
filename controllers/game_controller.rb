@@ -10,8 +10,8 @@ get '/game' do
 end
 
 get '/game/new' do
-  @home_teams = Team.find_all
-  @away_teams = Team.find_all
+  @home_teams = Team.all()
+  @away_teams = Team.all()
   @games = Game.find_all
   erb ( :"games/new")
 end

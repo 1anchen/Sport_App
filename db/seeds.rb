@@ -52,8 +52,6 @@ game1_match1 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game1_match1.save()
-game1_match1.extra_time()
-game1_match1.update()
 
 game1_match2 = Game.new({
     "home_team_id" => team3.id,
@@ -62,8 +60,6 @@ game1_match2 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game1_match2.save()
-game1_match2.extra_time()
-game1_match2.update()
 
 game1_match3 = Game.new({
     "home_team_id" => team5.id,
@@ -72,8 +68,6 @@ game1_match3 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game1_match3.save()
-game1_match3.extra_time()
-game1_match3.update()
 
 game1_match4 = Game.new({
     "home_team_id" => team7.id,
@@ -82,8 +76,6 @@ game1_match4 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game1_match4.save()
-game1_match4.extra_time()
-game1_match4.update()
 
 game2_match1 = Game.new({
     "home_team_id" => team1.id,
@@ -92,8 +84,6 @@ game2_match1 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game2_match1.save()
-game2_match1.extra_time()
-game2_match1.update()
 
 game2_match2 = Game.new({
     "home_team_id" => team2.id,
@@ -102,8 +92,6 @@ game2_match2 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game2_match2.save()
-game2_match2.extra_time()
-game2_match2.update()
 
 game2_match3 = Game.new({
     "home_team_id" => team5.id,
@@ -112,8 +100,7 @@ game2_match3 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game2_match3.save()
-game2_match3.extra_time()
-game2_match3.update()
+
 
 game2_match4 = Game.new({
     "home_team_id" => team6.id,
@@ -122,8 +109,7 @@ game2_match4 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game2_match4.save()
-game2_match4.extra_time()
-game2_match4.update()
+
 
 game3_match1 = Game.new({
     "home_team_id" => team1.id,
@@ -132,8 +118,7 @@ game3_match1 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game3_match1.save()
-game3_match1.extra_time()
-game3_match1.update()
+
 
 game3_match2 = Game.new({
     "home_team_id" => team2.id,
@@ -142,8 +127,7 @@ game3_match2 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game3_match2.save()
-game3_match2.extra_time()
-game3_match2.update()
+
 
 game3_match3 = Game.new({
     "home_team_id" => team5.id,
@@ -152,8 +136,7 @@ game3_match3 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game3_match3.save()
-game3_match3.extra_time()
-game3_match3.update()
+
 
 game3_match4 = Game.new({
     "home_team_id" => team6.id,
@@ -162,8 +145,110 @@ game3_match4 = Game.new({
     "away_team_score" => score2.rand(80..120)
   })
 game3_match4.save()
-game3_match4.extra_time()
-game3_match4.update()
+
+game4_match1 = Game.new({
+    "home_team_id" => team4.id,
+    "away_team_id" => team1.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game4_match1.save()
+
+
+game4_match2 = Game.new({
+    "home_team_id" => team3.id,
+    "away_team_id" => team2.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game4_match2.save()
+
+
+game4_match3 = Game.new({
+    "home_team_id" => team8.id,
+    "away_team_id" => team5.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game4_match3.save()
+
+
+game4_match4 = Game.new({
+    "home_team_id" => team7.id,
+    "away_team_id" => team6.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game4_match4.save()
+
+
+game5_match1 = Game.new({
+    "home_team_id" => team3.id,
+    "away_team_id" => team1.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game5_match1.save()
+
+
+game5_match2 = Game.new({
+    "home_team_id" => team4.id,
+    "away_team_id" => team2.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game5_match2.save()
+
+
+game5_match3 = Game.new({
+    "home_team_id" => team7.id,
+    "away_team_id" => team5.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game5_match3.save()
+
+
+game5_match4 = Game.new({
+    "home_team_id" => team8.id,
+    "away_team_id" => team6.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game5_match4.save()
+
+game6_match1 = Game.new({
+    "home_team_id" => team2.id,
+    "away_team_id" => team1.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game6_match1.save()
+
+game6_match2 = Game.new({
+    "home_team_id" => team4.id,
+    "away_team_id" => team3.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game6_match2.save()
+
+game6_match3 = Game.new({
+    "home_team_id" => team6.id,
+    "away_team_id" => team5.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game6_match3.save()
+
+game6_match4 = Game.new({
+    "home_team_id" => team8.id,
+    "away_team_id" => team7.id,
+    "home_team_score" => score1.rand(80..120),
+    "away_team_score" => score2.rand(80..120)
+  })
+game6_match4.save()
+
 
 binding.pry
 nil

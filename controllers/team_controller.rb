@@ -3,7 +3,7 @@ require('sinatra/contrib/all')
 require_relative('../models/team')
 
 get '/team' do
-  @teams = Team.find_all
+  @teams = Team.all()
   erb ( :"teams/index" )
 end
 
@@ -18,7 +18,7 @@ post '/team/show' do
 end
 
 get '/team/show' do
-  @teams = Team.find_all
+  @teams = Team.all()
   erb ( :"teams/show")
 end
 

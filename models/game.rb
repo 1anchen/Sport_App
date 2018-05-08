@@ -1,5 +1,5 @@
 require_relative('../db/sqlrunner')
-
+require_relative('team')
 
 class Game
 
@@ -12,6 +12,7 @@ class Game
     @away_team_id = options["away_team_id"].to_i
     @home_team_score = options["home_team_score"].to_i
     @away_team_score = options["away_team_score"].to_i
+    extra_time()
   end
 
   def away_team_name()
@@ -82,22 +83,29 @@ class Game
     sql = "SELECT * FROM games WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)
-    game = self.map_item(result)
-    return game
+    game = self.map_items(result)
+    return game.first()
   end
 
-  def self.find_all
+  def self.all
     sql = "SELECT * FROM games"
     result = SqlRunner.run(sql)
-    game = self.map_item(result)
+    game = self.map_items(result)
     return game
   end
 
   def self.league_table
+    teams = Team.all
+    league = []
+    teams.sort_by {|team| [team.win_persentage, team.name]}
 
+    for team in teams
+      league = league.push(team.name)
+    end
+    return league
   end
 
-  def self.map_item(game_hashes)
+  def self.map_items(game_hashes)
     result = game_hashes.map{|game_hash| self.new(game_hash)}
     return result
   end
