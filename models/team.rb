@@ -31,7 +31,6 @@ class Team
     wins().count()
   end
 
-
   def save()
     sql = "INSERT INTO teams
            (name)
@@ -70,9 +69,17 @@ class Team
 
   def win_persentage
     persentage = number_of_wins().to_f / (number_of_wins().to_f + number_of_loses.to_f)
-    persentage.round(3)
+    persentage.round(2) * 100
 
   end
+
+  def self.all()
+    sql = "SELECT * FROM teams "
+    result = SqlRunner.run(sql)
+    team = self.map_item(result)
+    return team
+  end
+
   def self.delete(id)
     sql = "DELETE FROM teams WHERE id = $1"
     values = [id]
@@ -89,18 +96,22 @@ class Team
     values = [id]
     result = SqlRunner.run(sql, values)
     team = self.map_item(result)
-    return team
+    return team.first()
   end
 
-  def self.all()
-    sql = "SELECT * FROM teams "
-    result = SqlRunner.run(sql)
-    team = self.map_item(result)
-    return team
-  end
+
 
   def self.map_item(team_hashes)
     result = team_hashes.map{|team_hash| self.new(team_hash)}
     return result
+  end
+
+  def self.results(id)
+    sql = "SELECT * FROM games
+           WHERE home_team_id = $1
+           OR away_team_id = $1"
+    values = [id]
+    game_hashes = SqlRunner.run(sql, values)
+    results = Game.map_items(game_hashes)
   end
 end

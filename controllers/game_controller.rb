@@ -5,14 +5,14 @@ require_relative('../models/team')
 
 
 get '/game' do
-  @games = Game.find_all
+  @games = Game.all
   erb ( :"games/index" )
 end
 
 get '/game/new' do
   @home_teams = Team.all()
   @away_teams = Team.all()
-  @games = Game.find_all
+  @games = Game.all
   erb ( :"games/new")
 end
 
