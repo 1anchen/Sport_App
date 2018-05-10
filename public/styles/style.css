@@ -1,0 +1,93 @@
+td, th {
+  text-align: left;
+  font-size: 150%;
+  padding: 8px;
+}
+
+td {
+  padding: 10px 20px 0px 0px;
+}
+
+th {
+
+  background-color: #4CAF50;
+  color: white;
+
+}
+
+table {
+
+  border-collapse: collapse;
+  width: 50%;
+}
+
+a, a:link, a:visited {
+  font-size: 150%;
+}
+
+
+body {
+  background: white
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+fieldset{
+   font-size: 1.6em;
+}
+
+select  {
+   font-size: 0.9em;
+}
+
+input{
+  font-size: 0.9em;
+}
+
+p, li {
+  font-size: 0.9em;
+}
+
+nav {
+  padding: 0px;
+  margin: 0px;
+  padding-right: 25px;
+}
+
+nav ul li {
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+div{
+  padding: 20px;
+}
+main {
+  padding: 25px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex--row {
+  flex-direction: row;
+}
+
+#content {
+  border-left: 1px solid darkred;
+  padding-left: 25px;
+}

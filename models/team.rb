@@ -69,8 +69,8 @@ class Team
 
   def win_persentage
     persentage = number_of_wins().to_f / (number_of_wins().to_f + number_of_loses.to_f)
-    persentage.round(2) * 100
-
+    result = persentage * 100
+    result.round(2)
   end
 
   def self.all()

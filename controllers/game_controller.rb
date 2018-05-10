@@ -4,25 +4,25 @@ require_relative('../models/game')
 require_relative('../models/team')
 
 
-get '/game' do
+get '/admin/game' do
   @games = Game.all
-  erb ( :"games/index" )
+  erb ( :"admin/games/index" )
 end
 
-get '/game/new' do
+get '/admin/game/new' do
   @home_teams = Team.all()
   @away_teams = Team.all()
   @games = Game.all
-  erb ( :"games/new")
+  erb ( :"admin/games/new")
 end
 
-post '/game' do
+post '/admin/game' do
   game = Game.new(params)
   game.save()
-  redirect to '/game'
+  redirect to '/admin/game'
 end
 
-post '/game/:id/delete' do
+post '/admin/game/:id/delete' do
   Game.delete(params[:id])
-  redirect to '/game'
+  redirect to '/admin/game'
 end

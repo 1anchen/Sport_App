@@ -1,0 +1,21 @@
+<h1>Show All Team in the League</h1>
+
+<table class="" >
+  <tr>
+    <th>Name</th>
+  </tr>
+
+    <% for team in @teams %>
+    <tr><%=team.name %></tr>
+    <%end   %>
+
+
+</table>
+
+<div >
+<a class="" href="/admin/game/new" >Create Game | | </a>
+<a class="" href="/admin/team/new" >Create Team | | </a>
+<a class="" href="/admin/team">Show Team | | </a>
+<a class="" href="/admin/game">Show Show Game | | </a>
+
+</div>

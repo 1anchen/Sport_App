@@ -1,10 +1,10 @@
 
 
-<table>
+<table align="center" >
 
   <tr>
-    <td>Home Team Name </td>
-    <td><%=@team.name %></td>
+    <th>Team Name </th>
+    <th><%=@team.name %></th>
   </tr>
   <tr>
     <td>Win </td>
@@ -20,6 +20,6 @@
   </tr>
   <tr>
     <td>Result </td>
-    <td> <a href="/my_teams/<%=@team.id  %>/results">show</a></td>
+    <td> <a href="/user/my_teams/<%=@team.id  %>/results">show</a></td>
   </tr>
 </table>
