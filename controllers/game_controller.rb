@@ -1,28 +1,39 @@
+require('pry')
 require('sinatra')
 require('sinatra/contrib/all')
 require_relative('../models/game')
 require_relative('../models/team')
 
 
-get '/admin/game' do
+get '/game' do
   @games = Game.all
-  erb ( :"admin/games/index" )
+  erb ( :"games/index" )
 end
 
-get '/admin/game/new' do
-  @home_teams = Team.all()
-  @away_teams = Team.all()
-  @games = Game.all
-  erb ( :"admin/games/new")
+get '/game/new' do
+  @teams = Team.all()
+  erb ( :"games/new")
 end
 
-post '/admin/game' do
+post '/game' do
   game = Game.new(params)
   game.save()
-  redirect to '/admin/game'
+  redirect to '/game'
 end
 
-post '/admin/game/:id/delete' do
+post '/game/:id/delete' do
   Game.delete(params[:id])
-  redirect to '/admin/game'
+  redirect to '/game'
+end
+
+get '/game/:id/edit' do
+  @game = Game.find(params[:id])
+  binding.pry
+  erb( :"games/edit" )
+end
+
+post '/game/:id' do
+  game = Game.new(params)
+  game.update()
+  redirect to "/game/#{params['id']}"
 end

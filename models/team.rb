@@ -2,8 +2,7 @@ require_relative('../db/sqlrunner')
 
 class Team
 
-  attr_reader :id
-  attr_accessor :name
+  attr_reader :id, :name
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
@@ -42,10 +41,6 @@ class Team
     @id = result[0]["id"].to_i
   end
 
-  # def total_game()
-  #  Team.find(@id)
-  #   # return team.wins + team.loses
-  # end
 
   def update()
     sql = "UPDATE teams
@@ -68,9 +63,9 @@ class Team
   end
 
   def win_persentage
-    persentage = number_of_wins().to_f / (number_of_wins().to_f + number_of_loses.to_f)
-    result = persentage * 100
-    result.round(2)
+    result= number_of_wins().to_f / (number_of_wins().to_f + number_of_loses.to_f)
+    persentage = result * 100
+    persentage.round(2)
   end
 
   def self.all()
@@ -106,7 +101,7 @@ class Team
     return result
   end
 
-  def self.results(id)
+  def self.games(id)
     sql = "SELECT * FROM games
            WHERE home_team_id = $1
            OR away_team_id = $1"

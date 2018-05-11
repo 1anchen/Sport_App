@@ -1,11 +1,11 @@
 
 
 
-<table align="center" >
+<table class = "noname" align="center" >
   <th align="center">My League</th>
   <% @new_position.each do |team|  %>
   <tr>
-      <td ><a href="/user/my_teams/<%= team.id  %>"> <%= team.name  %></a>
+      <td ><a href="/my_teams/<%= team.id  %>"> <%= team.name  %></a>
   </tr>
     <%end  %>
 </table>

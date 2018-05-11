@@ -3,8 +3,7 @@ require_relative('team')
 
 class Game
 
-  attr_reader :id
-  attr_accessor :home_team_id, :away_team_id, :home_team_score, :away_team_score
+  attr_reader :id, :home_team_id, :away_team_id, :home_team_score, :away_team_score
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
@@ -83,27 +82,17 @@ class Game
     sql = "SELECT * FROM games WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)
-    game = self.map_items(result)
-    return game.first()
+    game = self.new(result.first)
+    return game
   end
 
   def self.all
     sql = "SELECT * FROM games"
     result = SqlRunner.run(sql)
-    game = self.map_items(result)
-    return game
+    games = self.map_items(result)
+    return games
   end
 
-  def self.league_table
-    teams = Team.all
-    league = []
-    teams.sort_by {|team| [team.win_persentage, team.name]}
-
-    for team in teams
-      league = league.push(team.name)
-    end
-    return league
-  end
 
   def self.map_items(game_hashes)
     result = game_hashes.map{|game_hash| self.new(game_hash)}

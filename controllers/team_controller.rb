@@ -2,27 +2,38 @@ require('sinatra')
 require('sinatra/contrib/all')
 require_relative('../models/team')
 
-get '/admin/team' do
+get '/team' do
   @teams = Team.all()
-  erb ( :"admin/teams/index" )
+  erb ( :"teams/index" )
 end
 
-get '/admin/team/new' do
-  erb ( :"admin/teams/new")
+get '/team/new' do
+  erb ( :"teams/new")
 end
 
-post '/admin/team/show' do
+post '/team' do
   team = Team.new(params)
   team.save()
-  redirect to '/admin/team/show'
+  redirect to '/team'
 end
 
-get '/admin/team/show' do
+get '/team/show' do
   @teams = Team.all()
-  erb ( :"admin/teams/show")
+  erb ( :"teams/show")
 end
 
-post '/admin/team/:id/delete' do
+post '/team/:id/delete' do
   Team.delete(params[:id])
-  redirect to '/admin/team'
+  redirect to '/team'
+end
+
+get '/team/:id/edit' do
+  @team = Team.find(params[:id])
+  erb( :"teams/edit" )
+end
+
+post '/team/:id/edit' do
+  team= Team.new(params)
+  team.update()
+  redirect to "/team"
 end

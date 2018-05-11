@@ -1,13 +1,13 @@
 <h1> New Team Creation </h1>
 
-<form class="" action="/admin/game" method="post">
+<form class="" action="/game" method="post">
 
   <fieldset>
     <legend>Input Match Result:</legend>
     <label >
       Home Team
         <select class="" name="home_team_id">
-          <%for team in @home_teams  %>
+          <%for team in @teams  %>
             <option value="<%= team.id%>"><%=team.name %></option>
           <%end  %>
         </select>
@@ -21,7 +21,7 @@
     <label>
       Away Team
       <select class="" name="away_team_id">
-        <%for team in @away_teams  %>
+        <%for team in @teams  %>
         <option value="<%=team.id%>"><%=team.name  %></option>
         <%end  %>
       </select>
@@ -35,11 +35,3 @@
    <input type="submit" value="Enter">
  </fieldset>
 </form>
-
-<div >
-<a class="" href="/admin/game/new" >Create Game | | </a>
-<a class="" href="/admin/team/new" >Create Team | | </a>
-<a class="" href="/admin/team">Show Team | | </a>
-<a class="" href="/admin/game">Show Show Game | | </a>
-
-</div>

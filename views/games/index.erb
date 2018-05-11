@@ -1,0 +1,18 @@
+
+
+<div class="noname">
+<h1 align="center" >Game Page</h1>
+  <table align="center" class="">
+
+    <% for game in @games %>
+    <tr>
+      <td><%=game.home_team_name %> <%=game.home_team_score %> : <%=game.away_team_score %> <%=game.away_team_name %></td>
+      <td>
+        <form action='/game/<%=game.id  %>/delete' method="POST">
+          <input class="" type="submit" value="Delete" />
+        </form>
+      </td>
+     <%end  %>
+    </tr>
+  </table>
+</div>

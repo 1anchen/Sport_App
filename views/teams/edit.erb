@@ -1,0 +1,14 @@
+
+<form method="post" action="/team/<%= @team.id %>/edit">
+  <label for="name">Team Name:</label>
+  <input
+  type="text"
+  name="name"
+  id="name"
+  value="<%= @team.name %>"
+  />
+
+
+
+  <input type='submit' value="Edit Team">
+</form>

@@ -6,14 +6,19 @@
     <link rel="stylesheet" href="/styles/style.css">
   </head>
   <body>
-    <div class="">
-      <a class="" href="/user/league_table" >League Table | | </a>
-      <a class="" href="/user/my_teams" >My Teams | |</a>
-    </div>
+    <ul class="navbar">
+      <li><a class="" href="/league_table" >League Table</a></li>
+      <li><a class="" href="/my_teams" >My Teams</a></li>
+      <li><a class="" href="/game/new" >Create Game </a></li>
+      <li><a class="" href="/team/new" >Create Team </a></li>
+      <li><a class="" href="/team">Show Team</a></li>
+      <li><a class="" href="/game">Show Game</a></li>
+    </ul>
 
 
     <section id="content">
       <%= yield %>
     </section>
+
   </body>
 </html>
