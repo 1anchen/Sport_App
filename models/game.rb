@@ -52,7 +52,7 @@ class Game
           RETURNING id"
     values = [@home_team_id,@away_team_id,@home_team_score,@away_team_score]
     result = SqlRunner.run(sql,values)
-    @id = result[0]['id']
+    @id = result[0]['id'].to_i 
   end
 
 
